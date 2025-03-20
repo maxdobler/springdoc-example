@@ -1,0 +1,256 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/springwolf/amqp/publish": {
+      "get": {
+        "tags": [
+          "springwolf-amqp-controller"
+        ],
+        "operationId": "canPublish",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "springwolf-amqp-controller"
+        ],
+        "operationId": "publish",
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/io.github.springwolf.core.controller.dtos.MessageDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/example": {
+      "post": {
+        "tags": [
+          "example-controller"
+        ],
+        "operationId": "saveKomplex",
+        "parameters": [
+          {
+            "name": "requestDto",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/de.maxdobler.springwolfexample.ExampleController$KomplexRequestDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/de.maxdobler.springwolfexample.ExampleController$KomplexResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/springwolf/ui-config": {
+      "get": {
+        "tags": [
+          "ui-config-controller"
+        ],
+        "operationId": "getUiConfig",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/io.github.springwolf.core.controller.UiConfigController$UiConfig"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/springwolf/docs": {
+      "get": {
+        "tags": [
+          "async-api-controller"
+        ],
+        "operationId": "asyncApiYaml",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/yaml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/springwolf/docs/{group}": {
+      "get": {
+        "tags": [
+          "async-api-controller"
+        ],
+        "operationId": "asyncApiYaml_1",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/yaml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/springwolf/docs.yaml": {
+      "get": {
+        "tags": [
+          "async-api-controller"
+        ],
+        "operationId": "asyncApiYaml_2",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/yaml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/springwolf/docs.json": {
+      "get": {
+        "tags": [
+          "async-api-controller"
+        ],
+        "operationId": "asyncApiJson",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "de.maxdobler.springwolfexample.ExampleController$KomplexRequestDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "KomplexRequestDto"
+      },
+      "de.maxdobler.springwolfexample.ExampleController$KomplexResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "title": "KomplexResponseDto"
+      }
+    }
+  }
+}
